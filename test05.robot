@@ -25,3 +25,4 @@ Test empik
 
 # liste tworzymy z @ a zmienną z $
 # liste i zmienną drukujemy poprzez $
+#
