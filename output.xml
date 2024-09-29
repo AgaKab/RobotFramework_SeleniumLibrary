@@ -1,15 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1 (Python 3.10.12 on linux)" generated="2024-09-28T22:31:25.422888" rpa="false" schemaversion="5">
-<suite id="s1" name="Test01" source="/home/agakab/PycharmProjects/Robot/test01.robot">
-<test id="s1-t1" name="Test pierwszy" line="2">
-<kw name="Log To Console" owner="BuiltIn">
-<arg>Witaj świecie</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2024-09-28T22:31:25.439351" elapsed="0.000588"/>
+<robot generator="Robot 7.1 (Python 3.10.12 on linux)" generated="2024-09-29T10:39:16.617178" rpa="false" schemaversion="5">
+<suite id="s1" name="testGame" source="/home/agakab/PycharmProjects/Robot/testGame.robot">
+<test id="s1-t1" name="Test CLick Cell and Verify" line="17">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:16.770291" level="INFO">Opening browser 'Chrome' to base url 'file:///home/agakab/Pobrane/webTicTacToe-master/index.html'.</msg>
+<arg>${url}</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-09-29T10:39:16.769987" elapsed="4.788422"/>
 </kw>
-<status status="PASS" start="2024-09-28T22:31:25.438158" elapsed="0.002121"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:21.566394" level="INFO">Clicking element 'id:new-game'.</msg>
+<arg>id:new-game</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-29T10:39:21.565366" elapsed="0.201017"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:21.767357" level="INFO">Clicking element '//*[@id="game-board"]/div[2]/div[2]'.</msg>
+<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-29T10:39:21.766852" elapsed="0.132814"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-09-29T10:39:24.901269" level="INFO">Slept 3 seconds.</msg>
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-09-29T10:39:21.900135" elapsed="3.001437"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:24.955369" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screen_game2.png"&gt;&lt;img src="screen_game2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>screen_game2.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-09-29T10:39:24.902509" elapsed="0.053017"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:24.983204" level="INFO">${celltext} = X</msg>
+<var>${celltext}</var>
+<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-29T10:39:24.957265" elapsed="0.025996"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-29T10:39:24.985384" level="INFO">X</msg>
+<arg>${celltext}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-29T10:39:24.984324" elapsed="0.001150"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${celltext}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-09-29T10:39:24.986504" elapsed="0.000623"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${celltext}</arg>
+<arg>X</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-09-29T10:39:24.987439" elapsed="0.000255"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-09-29T10:39:25.988210" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-09-29T10:39:24.987841" elapsed="1.000536"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:25.989226" level="INFO">Clicking element '//*[@id="game-board"]/div[2]/div[2]'.</msg>
+<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-29T10:39:25.988693" elapsed="0.052719"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-09-29T10:39:27.042036" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-09-29T10:39:26.041707" elapsed="1.000492"/>
+</kw>
+<kw name="Alert Should Be Present" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:27.042629" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<status status="PASS" start="2024-09-29T10:39:27.042471" elapsed="0.008035"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-09-29T10:39:27.109566" level="INFO">${celltext} = X</msg>
+<var>${celltext}</var>
+<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-29T10:39:27.050811" elapsed="0.058840"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${celltext}</arg>
+<arg>X</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-09-29T10:39:27.113222" elapsed="0.000446"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-09-29T10:39:27.117375" elapsed="1.095382"/>
+</kw>
+<doc>Test otwiera nową gre i klika w pole</doc>
+<status status="PASS" start="2024-09-29T10:39:16.768660" elapsed="11.445064"/>
 </test>
-<status status="PASS" start="2024-09-28T22:31:25.423760" elapsed="0.017733"/>
+<status status="PASS" start="2024-09-29T10:39:16.619234" elapsed="11.597522"/>
 </suite>
 <statistics>
 <total>
@@ -18,7 +109,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Test01">Test01</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="testGame">testGame</stat>
 </suite>
 </statistics>
 <errors>
