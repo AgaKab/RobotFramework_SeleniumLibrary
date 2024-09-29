@@ -1,115 +1,234 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1 (Python 3.10.12 on linux)" generated="2024-09-29T10:39:16.617178" rpa="false" schemaversion="5">
-<suite id="s1" name="testGame" source="/home/agakab/PycharmProjects/Robot/testGame.robot">
-<test id="s1-t1" name="Test CLick Cell and Verify" line="17">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:16.770291" level="INFO">Opening browser 'Chrome' to base url 'file:///home/agakab/Pobrane/webTicTacToe-master/index.html'.</msg>
-<arg>${url}</arg>
-<arg>Chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-09-29T10:39:16.769987" elapsed="4.788422"/>
+<robot generator="Robot 7.1 (Python 3.10.12 on linux)" generated="2024-09-29T13:30:42.454673" rpa="false" schemaversion="5">
+<suite id="s1" name="testAPI" source="/home/agakab/PycharmProjects/Robot/testAPI.robot">
+<test id="s1-t1" name="Test create new game" line="10">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-09-29T13:30:42.660068" level="INFO">POST Request : url=http://127.0.0.1:5000/game 
+ path_url=/game 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2024-09-29T13:30:42.660566" level="INFO">POST Response : url=http://127.0.0.1:5000/game 
+ status=201, reason=CREATED 
+ headers={'Server': 'Werkzeug/3.0.4 Python/3.10.12', 'Date': 'Sun, 29 Sep 2024 11:30:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '53', 'Access-Control-Allow-Origin': '*', 'Connection': 'close'} 
+ body={
+  "game_id": 35,
+  "message": "New game created"
+}
+ 
+ </msg>
+<msg time="2024-09-29T13:30:42.660746" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>${url}/game</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.647586" elapsed="0.013185"/>
 </kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:21.566394" level="INFO">Clicking element 'id:new-game'.</msg>
-<arg>id:new-game</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-09-29T10:39:21.565366" elapsed="0.201017"/>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.661740" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.660990" elapsed="0.000831"/>
 </kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:21.767357" level="INFO">Clicking element '//*[@id="game-board"]/div[2]/div[2]'.</msg>
-<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-09-29T10:39:21.766852" elapsed="0.132814"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-09-29T10:39:24.901269" level="INFO">Slept 3 seconds.</msg>
-<arg>3</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-09-29T10:39:21.900135" elapsed="3.001437"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:24.955369" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screen_game2.png"&gt;&lt;img src="screen_game2.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>screen_game2.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2024-09-29T10:39:24.902509" elapsed="0.053017"/>
-</kw>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:24.983204" level="INFO">${celltext} = X</msg>
-<var>${celltext}</var>
-<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-09-29T10:39:24.957265" elapsed="0.025996"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2024-09-29T10:39:24.985384" level="INFO">X</msg>
-<arg>${celltext}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-09-29T10:39:24.984324" elapsed="0.001150"/>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.662546" level="INFO">${json_data} = {'game_id': 35, 'message': 'New game created'}</msg>
+<var>${json_data}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.661994" elapsed="0.000581"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>${celltext}</arg>
+<arg>${json_data}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2024-09-29T10:39:24.986504" elapsed="0.000623"/>
+<status status="PASS" start="2024-09-29T13:30:42.662740" elapsed="0.000165"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.663380" level="INFO">New game created</msg>
+<arg>${json_data["message"]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.663012" elapsed="0.000405"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${json_data["message"]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.663534" elapsed="0.000345"/>
 </kw>
 <kw name="Should Be Equal" owner="BuiltIn">
-<arg>${celltext}</arg>
-<arg>X</arg>
+<arg>${json_data["message"]}</arg>
+<arg>New game created</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2024-09-29T10:39:24.987439" elapsed="0.000255"/>
+<status status="PASS" start="2024-09-29T13:30:42.664013" elapsed="0.000341"/>
 </kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-09-29T10:39:25.988210" level="INFO">Slept 1 second.</msg>
-<arg>1</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-09-29T10:39:24.987841" elapsed="1.000536"/>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.665325" level="INFO">${game_id} = 35</msg>
+<arg>${game_id}</arg>
+<arg>${json_data["game_id"]}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.664483" elapsed="0.000897"/>
 </kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:25.989226" level="INFO">Clicking element '//*[@id="game-board"]/div[2]/div[2]'.</msg>
-<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-09-29T10:39:25.988693" elapsed="0.052719"/>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.666366" level="INFO">35</msg>
+<arg>${game_id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.666214" elapsed="0.000187"/>
 </kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-09-29T10:39:27.042036" level="INFO">Slept 1 second.</msg>
-<arg>1</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-09-29T10:39:26.041707" elapsed="1.000492"/>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${game_id}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.666556" elapsed="0.000133"/>
 </kw>
-<kw name="Alert Should Be Present" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:27.042629" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
-<doc>Verifies that an alert is present and by default, accepts it.</doc>
-<status status="PASS" start="2024-09-29T10:39:27.042471" elapsed="0.008035"/>
-</kw>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-09-29T10:39:27.109566" level="INFO">${celltext} = X</msg>
-<var>${celltext}</var>
-<arg>//*[@id="game-board"]/div[2]/div[2]</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-09-29T10:39:27.050811" elapsed="0.058840"/>
-</kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${celltext}</arg>
-<arg>X</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2024-09-29T10:39:27.113222" elapsed="0.000446"/>
-</kw>
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2024-09-29T10:39:27.117375" elapsed="1.095382"/>
-</kw>
-<doc>Test otwiera nową gre i klika w pole</doc>
-<status status="PASS" start="2024-09-29T10:39:16.768660" elapsed="11.445064"/>
+<doc>Test tworzenia nowej gry</doc>
+<status status="PASS" start="2024-09-29T13:30:42.646908" elapsed="0.019896"/>
 </test>
-<status status="PASS" start="2024-09-29T10:39:16.619234" elapsed="11.597522"/>
+<test id="s1-t2" name="Get Game Status" line="26">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2024-09-29T13:30:42.671658" level="INFO">GET Request : url=http://127.0.0.1:5000/game/35 
+ path_url=/game/35 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-09-29T13:30:42.671747" level="INFO">GET Response : url=http://127.0.0.1:5000/game/35 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/3.0.4 Python/3.10.12', 'Date': 'Sun, 29 Sep 2024 11:30:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '35', 'Access-Control-Allow-Origin': '*', 'Connection': 'close'} 
+ body={
+  "game_id": 35,
+  "moves": ""
+}
+ 
+ </msg>
+<msg time="2024-09-29T13:30:42.671870" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}/game/${game_id}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.667258" elapsed="0.004634"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.672584" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.672138" elapsed="0.000503"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.673228" level="INFO">${json_data} = {'game_id': 35, 'moves': ''}</msg>
+<var>${json_data}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.672803" elapsed="0.000445"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${json_data}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.673365" elapsed="0.000209"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.673971" level="INFO">{'game_id': 35, 'moves': ''}</msg>
+<arg>${json_data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.673702" elapsed="0.000324"/>
+</kw>
+<kw name="Should Be Empty" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.674557" level="INFO">Length is 0.</msg>
+<arg>${json_data["moves"]}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.674174" elapsed="0.000421"/>
+</kw>
+<doc>Test pobierania stanu gry</doc>
+<status status="PASS" start="2024-09-29T13:30:42.667004" elapsed="0.007790"/>
+</test>
+<test id="s1-t3" name="Make First Move" line="35">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.676231" level="INFO">${body} = {'cellIndex': '3'}</msg>
+<var>${body}</var>
+<arg>cellIndex=3</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.675743" elapsed="0.000518"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-09-29T13:30:42.700236" level="INFO">POST Request : url=http://127.0.0.1:5000/game/35/move 
+ path_url=/game/35/move 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '18', 'Content-Type': 'application/json'} 
+ body=b'{"cellIndex": "3"}' 
+ </msg>
+<msg time="2024-09-29T13:30:42.700333" level="INFO">POST Response : url=http://127.0.0.1:5000/game/35/move 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/3.0.4 Python/3.10.12', 'Date': 'Sun, 29 Sep 2024 11:30:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '63', 'Access-Control-Allow-Origin': '*', 'Connection': 'close'} 
+ body={
+  "game_id": 35,
+  "message": "Move made",
+  "moves": "3X"
+}
+ 
+ </msg>
+<msg time="2024-09-29T13:30:42.700462" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${url}/game/${game_id}/move</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.676465" elapsed="0.024019"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.701204" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.700727" elapsed="0.000586"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.701841" level="INFO">${json_data} = {'game_id': 35, 'message': 'Move made', 'moves': '3X'}</msg>
+<var>${json_data}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.701457" elapsed="0.000403"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${json_data}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.703876" elapsed="0.000403"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-29T13:30:42.704763" level="INFO">{'game_id': 35, 'message': 'Move made', 'moves': '3X'}</msg>
+<arg>${json_data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.704569" elapsed="0.000235"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json_data["game_id"]}</arg>
+<arg>${game_id}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.704920" elapsed="0.000581"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json_data["message"]}</arg>
+<arg>Move made</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.705750" elapsed="0.002432"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json_data["moves"]}</arg>
+<arg>3X</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-09-29T13:30:42.708426" elapsed="0.000910"/>
+</kw>
+<doc>Test wykonania pierwszego ruchu</doc>
+<status status="PASS" start="2024-09-29T13:30:42.675253" elapsed="0.034303"/>
+</test>
+<status status="PASS" start="2024-09-29T13:30:42.455607" elapsed="0.254370"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="testGame">testGame</stat>
+<stat pass="3" fail="0" skip="0" id="s1" name="testAPI">testAPI</stat>
 </suite>
 </statistics>
 <errors>
