@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb6de5a-1ff5-41d2-9a21-78c70e9ae673" name="Changes" comment="added TicTacToe game test">
-      <change afterPath="$PROJECT_DIR$/testAPI.robot" afterDir="false" />
+    <list default="true" id="cdb6de5a-1ff5-41d2-9a21-78c70e9ae673" name="Changes" comment="added testAPI file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.html" beforeDir="false" afterPath="$PROJECT_DIR$/log.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.xml" beforeDir="false" afterPath="$PROJECT_DIR$/output.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testAPI.robot" beforeDir="false" afterPath="$PROJECT_DIR$/testAPI.robot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,12 +102,21 @@
       <option name="project" value="LOCAL" />
       <updated>1727599317114</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added testAPI file">
+      <option name="closed" value="true" />
+      <created>1727609594030</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727609594030</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="added TicTacToe game test" />
-    <option name="LAST_COMMIT_MESSAGE" value="added TicTacToe game test" />
+    <MESSAGE value="added testAPI file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added testAPI file" />
   </component>
 </project>

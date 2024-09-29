@@ -3,6 +3,7 @@ Library  RequestsLibrary
 
 
 *** Variables ***
+#  wziete z py.TicTacToe project main.py musi byc uruchomiony i napoczatku po uruchomieniu wyrzuca nam http
 ${url}      http://127.0.0.1:5000
 
 
@@ -36,10 +37,40 @@ Make First Move
     [Documentation]   Test wykonania pierwszego ruchu
     ${body}  create dictionary      cellIndex=3
     ${response}   POST        ${url}/game/${game_id}/move       json=${body}
-    should be equal as numbers   ${response.status_code}  200
+    should be equal as integers   ${response.status_code}  200
     ${json_data}       set variable        ${response.json()}
     log to console   ${json_data}
     log     ${json_data}
     should be equal     ${json_data["game_id"]}     ${game_id}
     should be equal     ${json_data["message"]}     Move made
     should be equal     ${json_data["moves"]}     3X
+
+
+Make Invalid Move
+    [Documentation]   Test wykonania ruchu na to samo pole
+    ${body}  create dictionary      cellIndex=3
+    ${status}  ${response}   run keyword and ignore error  POST        ${url}/game/${game_id}/move       json=${body}
+    log  ${status}
+    log  ${response}
+    should be equal    ${status}   FAIL
+#    ${json_data}       set variable        ${response.json()}
+#    log to console   ${json_data}
+#    log     ${json_data}
+    ${response}     GET  ${url}/game/${game_id}
+    should be equal as integers   ${response.status_code}  200
+    ${json_data}       set variable        ${response.json()}
+    log to console   ${json_data}
+    log     ${json_data}
+    should be equal     ${json_data["moves"]}     3X
+
+Make second move
+    [Documentation]   Test wykonania drugiego ruchu
+    ${body}     create dictionary   cellIndex=7
+    ${response}   POST        ${url}/game/${game_id}/move       json=${body}
+    should be equal as integers   ${response.status_code}  200
+    ${json_data}       set variable        ${response.json()}
+    log to console   ${json_data}
+    log     ${json_data}
+    should be equal     ${json_data["game_id"]}     ${game_id}
+    should be equal     ${json_data["message"]}     Move made
+    should be equal     ${json_data["moves"]}     3X7O
